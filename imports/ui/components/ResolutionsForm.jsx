@@ -6,15 +6,11 @@ export default class ResolutionsForm extends Component {
     event.preventDefault();
     var text = this._resolution.value.trim();
     console.log(text);
-
-    Resolutions.insert({
-      'text': text,
-      'complete': false,
-      'createdAt': new Date()
+    Meteor.call('addResolution', text, ()=>{
+      // happens after add resolution is complete
+      // reset string
+      this._resolution.value = "";
     });
-
-    // reset string
-    this._resolution.value = "";
   }
   render() {
     return (
