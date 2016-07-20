@@ -4,7 +4,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import ResolutionsForm from './ResolutionsForm.jsx';
 import ResolutionSingle from './ResolutionSingle.jsx';
 
-export default class App extends React.Component {
+export default class ResolutionsWrapper extends React.Component {
 
   render() {
     let res = this.props.resolutions;
@@ -28,4 +28,4 @@ export default createContainer(() => {
   return {
     'resolutions': Resolutions.find().fetch()
   };
-}, App);
+}, ResolutionsWrapper);
