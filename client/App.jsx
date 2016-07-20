@@ -1,22 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom'
 import { createContainer } from 'meteor/react-meteor-data';
+import ResolutionsForm from './ResolutionsForm.jsx';
+import ResolutionSingle from './ResolutionSingle.jsx';
 
 export default class App extends React.Component {
-  addResolution(event) {
-    event.preventDefault();
-    var text = this._resolution.value.trim();
-    console.log(text);
-
-    Resolutions.insert({
-      'text': text,
-      'complete': false,
-      'createdAt': new Date()
-    });
-
-    // reset string
-    this._resolution.value = "";
-  }
 
   render() {
     let res = this.props.resolutions;
@@ -26,12 +14,10 @@ export default class App extends React.Component {
       return (
         <div>
           <h1>My Resolutions</h1>
-          <form className='new-resolution' onSubmit={this.addResolution.bind(this)}>
-            <input type='text' ref={(ref) => this._resolution = ref} placeholder='finish series' />
-          </form>
-          <div>
-            {res[0].text}
-            </div>
+          <ResolutionsForm />
+            <ul>
+              <ResolutionSingle resolution={res[0]} />
+            </ul>
           </div>
       );
     }
