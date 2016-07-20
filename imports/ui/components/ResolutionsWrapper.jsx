@@ -15,8 +15,10 @@ export default class ResolutionsWrapper extends React.Component {
         <div>
           <h1>My Resolutions</h1>
           <ResolutionsForm />
-            <ul>
-              <ResolutionSingle resolution={res[0]} />
+            <ul className='resolutions'>
+            {res.map((resolution)=>{
+              return (<ResolutionSingle resolution={resolution} key={resolution._id} />)
+            })}
             </ul>
           </div>
       );
